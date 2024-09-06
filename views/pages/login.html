@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carme&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">  
+    <title>Lunch Room</title>
+  </head>
+  <body>
+    <!--header logo-->
+    <div class="text-center relative mt-[117px]" >
+      <img src="../../media/logo.png" class="mx-auto">
+      <h1 class="font-awesome text-[32px] color-primary leading-[31px]">LUNCH <br> ROOM</h1>
+    </div>
+    
+       <!--input login-->
+    <div class="flex flex-col gap-[106px] text-center mt-[144px]">
+      <input id="email" class="login-field" placeholder="Email" type="email">
+      <input id="password" class="login-field" placeholder="Password" type="password">
+    </div> 
+    <!--login options-->
+    <div class="w-[258px] mx-auto mt-[21.5px] flex items-center justify-between">
+      <div class="flex items-center gap-[5px]">
+        <input id="checkbox" type="checkbox">
+        <span class="font-carme text-[12px] color-secondary">Remember me</span>
+      </div>
+      <a href="" class="font-carme text-[12px] color-secondary">Forgot password?</a>
+    </div> 
+    
+    <div class="login-container">
+      <button id="loginButton"class="flex justify-center items-center pt-[6px] rounded-md shadow-md mx-auto mt-[42px]">Login</button>
+    </div>
+    <script>
+      const { ipcRenderer } = require('electron');
+
+      document.getElementById('loginButton').addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    ipcRenderer.send('login-attempt', { email, password });
+
+    ipcRenderer.on('login-success', () => {
+        // No es necesario hacer nada aquí ya que la ventana cambiará
+    });
+
+    ipcRenderer.on('login-failed', (event, message) => {
+        alert(message);
+    });
+});
+
+  </script>
+  
+   
+  </body>
+</html>
+
+<style>
+ 
+  
+  .color-secondary{
+   color: rgb(136 57 0 / 52%);
+  }
+  .font-dongle{
+    font-family: Dongle;
+  }
+  .font-carme{
+    font-family: Carme;
+  }
+  .color-primary{
+    color:#883900;
+  }
+  .font-awesome{
+    font-family: 'Font Awesome 6 Free', sans-serif;
+    font-weight: 400;
+  }
+  .login-field{
+    width: 258px;
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(136 57 0 / 52%);
+    font-family: Dongle;
+    font-size: 28px;
+    color: rgb(66 31 5);
+
+  }
+  .login-field::placeholder{
+    font-size: 32px;
+    color: rgb(66 31 5 / 56% );
+  }
+  .login-field:active,
+  .login-field:focus{
+    outline: none;
+  }
+  body {
+    background-color: #FFFEF1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    right: -15.36px;
+    width: 385.36px;
+    height: 389.15px;
+    background-image: url('../../media/Ellipse 4.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -5;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -11px;
+    left: -22.05px ;
+    width: 313.05px;
+    height: 358px;
+    background-image: url('../../media/Ellipse 5.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -5;
+  }
+  input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    background-color: rgb(136 57 0 / 39%);
+  }
+
+  input[type="checkbox"]:hover {
+    border: 1px solid rgb(136 57 0 / 39%);
+    filter: brightness(0.7);
+  }
+
+  input[type="checkbox"]:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    background-color: rgb(136 57 0);
+  }
+  button{
+    width: 81px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(136 57 0 / 52%) ;
+    font-family: Dongle;
+    font-size: 28px;
+    font-weight: bold;
+    color: #3A1B04;
+    transition: scale ease-in-out 0.2s;
+    
+  }
+  button:hover{
+    scale: 1.1;
+
+  }
+  
+
+
+    
+</style>
