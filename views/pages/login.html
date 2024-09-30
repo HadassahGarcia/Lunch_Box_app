@@ -34,23 +34,19 @@
     </div>
     <script>
       const { ipcRenderer } = require('electron');
-
+    
+      // Envía la solicitud de login solo cuando se hace clic
       document.getElementById('loginButton').addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    ipcRenderer.send('login-attempt', { email, password });
-
-    ipcRenderer.on('login-success', () => {
-        // No es necesario hacer nada aquí ya que la ventana cambiará
-    });
-
-    ipcRenderer.on('login-failed', (event, message) => {
-        alert(message);
-    });
-});
-
-  </script>
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+    
+        // Enviar los datos al proceso principal
+        ipcRenderer.send('login', email, password);
+    
+        // Enviar el evento de éxito de login
+      });
+    </script>
+    
   
    
   </body>
@@ -161,8 +157,5 @@
     scale: 1.1;
 
   }
-  
-
-
-    
 </style>
+

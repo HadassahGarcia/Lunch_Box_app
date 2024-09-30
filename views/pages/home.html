@@ -1,10 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head> 
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to the Home Page!</h1>
-    <p>This is your dashboard.</p>
-</body>
-</html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carme&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">  
+    <title>Lunch Room</title>
+  </head>
+  <body>
+    <div >
+      <img src="../../media/logo.png" width="98px" height="32px" style="margin: 20px">
+    
+    </div>
+    <div>
+      
+      <h4 class="user-name">username complete <h4>
+        <img src="../../media/user.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: 30px" href="#">
+        <img src="../../media/cart.png"width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: -5px" href="#">
+    </div>
+    <div class="menu-bar">
+      <img src="../../media/menu.png" width="24px" height="24px" style="margin-top: 2px;">
+      <button id="menuButton"class="flex justify-center items-center pt-[2px] rounded-md shadow-md mx-auto mt-[42px]">Menu</button>
+    
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+        <img src="../../media/search.png" >
+      </div>
+
+      <div class="background-container">
+        <a>Platillos</a>
+        <a>Bebidas</a>
+        <a>Postres</a>
+        <div class="background-image">
+
+        </div>
+
+      </div>
+
+   
+  </body>
+
+<style>
+  .background-container{
+    position: absolute;
+    top: 170px;
+    background-color: rgb(224 203 184 / 89%);
+    width: 341px;
+    height: 570px;
+    border-radius: 5px;
+    left: 20px;
+    
+
+
+    
+  }
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #F2E4D7; /* Color de fondo similar */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 10px 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra interior */
+    width: 200px; /* Ajusta el ancho según sea necesario */
+    position: absolute; /* Usamos position para moverla */
+    right: 15px; /* Desplazamos hacia la derecha */
+    top: 97px;
+  }
+
+  .search-bar input {
+    border: none;
+    background: none;
+    outline: none;
+    flex: 1;
+    font-size: 10px;
+    color: #C9A694; /* Color del texto */
+    font-family: 'Monda', sans-serif;
+    font-size: 12px;
+  }
+
+  .search-bar input::placeholder {
+    color: #C9A694; /* Color del placeholder */
+  }
+
+  .search-bar img {
+    width: 12px; /* Ajusta el tamaño del icono de búsqueda */
+    height: 12px;
+
+  }
+
+  .menu-bar {
+    border: 2px solid #883900;
+    border-radius: 5px;
+    padding: 2px 18px;
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 10px; /* Espaciado entre el ícono y el botón */
+    font-family: carme;
+    color: #F2E4D7;
+    background-color: rgb(136 57 0 / 62%);
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    font-size: medium;
+    
+
+  }
+
+  #menuButton {
+    margin: 0;}
+
+  .user-name{
+    border: 2px solid  rgb(136 57 0 / 68%); /* Color y grosor del borde */
+    border-radius: 20px; /* Redondea las esquinas */
+    padding: 2px 20px; /* Espaciado interno */
+    display: inline-block; /* Ajusta el tamaño del contenedor al texto */
+    font-family: Dongle; /* Fuente del texto */
+    color:  rgb(136 57 0 / 68%);
+    background-color: #E7F4E6; /* Color de fondo */
+    position: absolute; /* Posiciona de manera absoluta */
+    top: 2px; /* Mueve el contenedor hacia abajo desde el borde superior */
+    right: 80px; 
+
+  }
+  .color-secondary{
+   color: rgb(136 57 0 / 52%);
+  }
+  .font-dongle{
+    font-family: Dongle;
+  }
+  .font-carme{
+    font-family: Carme;
+  }
+  .color-primary{
+    color:#883900;
+  }
+  .font-awesome{
+    font-family: 'Font Awesome 6 Free', sans-serif;
+    font-weight: 400;
+  }
+  .login-field{
+    width: 258px;
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(136 57 0 / 52%);
+    font-family: Dongle;
+    font-size: 28px;
+    color: rgb(66 31 5);
+
+  }
+  .login-field::placeholder{
+    font-size: 32px;
+    color: rgb(66 31 5 / 56% );
+  }
+  .login-field:active,
+  .login-field:focus{
+    outline: none;
+  }
+  body {
+  background-color: #FFFEF1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  right: -15.36px;
+  width: 385.36px;
+  height: 389.15px;
+  background-image: url('../../media/Ellipse 4.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -5;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -11px;
+  left: -22.05px ;
+  width: 313.05px;
+  height: 358px;
+  background-image: url('../../media/Ellipse 5.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -5;
+}
+</style>

@@ -1,46 +1,57 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const axios = require('axios'); // Usamos Axios para hacer las solicitudes HTTP
 
+require('electron-reloader')(module);
 
-require('electron-reloader')(module)
+const pages_path = 'views/pages/';
+let mainWindow; // Definimos la ventana globalmente
 
-const pages_path = 'views/pages/'
 const createWindow = () => {
-    const win = new BrowserWindow({
-      width: 393,
-      height: 852,
-      resizable: false,
-      webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,}
-    })
-    win.loadURL('http://localhost:4000'); //Crea la direccion para la base de datos
+  mainWindow = new BrowserWindow({
+    width: 393,
+    height: 852,
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  });
 
-    win.removeMenu(); // Esta línea elimina la barra de menú
-  
-    win.loadFile(pages_path + 'login.html')
-  }
-  app.whenReady().then(() => {
-    createWindow();
+  mainWindow.loadFile(pages_path + 'login.html'); // Cargamos la página de login inicialmente
+  mainWindow.removeMenu(); // Elimina la barra de menú
+};
 
-    app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow();
-    });
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
 });
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+  if (process.platform !== 'darwin') app.quit();
 });
-// Escuchar el evento de intento de login
-ipcMain.on('login-attempt', (event, { email, password }) => {
-  if (email === 'email' && password === 'pass') {
-    win.loadFile(pages_path + 'home.html') // Carga la nueva página
-  } else {
-      event.reply('login-failed', 'Invalid username or password');
-  }
+ipcMain.on('login', (event, email, password) => {
+    let data = new URLSearchParams();
+    data.append('email', email)
+    data.append('password', password)
+
+    fetch('http://localhost:4000/login', {
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: data.toString() 
+    }).then(res => {
+      if (res.ok){
+      mainWindow.loadFile(pages_path +'home.html');
+
+      }
+      else {
+        dialog.showErrorBox('error', 'No estas bien')
+      }
+    })
 });
 
-
-
-
-  
