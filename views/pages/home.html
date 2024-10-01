@@ -29,21 +29,109 @@
         <img src="../../media/search.png" >
       </div>
 
-      <div class="background-container">
-        <a href="">Platillos</a>
-        <a href="">Bebidas</a>
-        <a href="">Postres</a>
-        <div class="background-image">
-
+      <div id="background-container">
+        <div id="nav">
+          <span>Platillos</span>
+          <span>Bebidas</span>
+          <span>Postres</span>
         </div>
-
+        
+        <div class="content">
+          <div class="food-item">
+            <img src="../../media/burrito.png" alt="Burrito">
+            <span>Burrito</span>
+            <div class="quantity-control">
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+          </div>
+          <div class="food-item">
+            <img src="../../media/pescado.png" alt="Pescado empapelado">
+            <span>Pescado empapelado</span>
+            <div class="quantity-control">
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+          </div>
+          <div class="food-item">
+            <img src="../../media/filete.png" alt="Filete">
+            <span>Filete</span>
+            <div class="quantity-control">
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+          </div>
+        </div>
       </div>
-
-   
-  </body>
+      
+</body>
 
 <style>
-  .background-container{
+
+content {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; 
+  margin-top: 20px;
+  width: 50%;
+  height: auto;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.food-item {
+  background-color: #a36e46;
+  border-radius: 15px;
+  width: 90px;
+  height: 145.8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.food-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.food-item span {
+  font-family: 'Monda', sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: #FEEAD9
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.quantity-control button {
+  background-color: rgb(224 203 184 / 67%);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quantity-control span {
+  font-family: 'Monda', sans-serif;
+  color: #5E331B;
+}
+
+#background-container{
     position: absolute;
     top: 170px;
     background-color: rgb(224 203 184 / 89%);
@@ -51,9 +139,18 @@
     height: 570px;
     border-radius: 5px;
     left: 20px;
-    
+    display: flex;
   }
-  .search-bar {
+  #nav{
+    font-family: 'Monda';
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    color: #883900;
+    }
+    
+    .search-bar {
     display: flex;
     align-items: center;
     background-color: #F2E4D7; /* Color de fondo similar */
