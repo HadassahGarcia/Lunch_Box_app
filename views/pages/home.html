@@ -16,17 +16,21 @@
     <div>
       
       <h4 class="user-name">username complete <h4>
+        <a href="cart.html">
+           <img src="../../media/cart.png"width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: -5px">
+      </a>
         <img src="../../media/user.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: 30px" href="#">
-        <img src="../../media/cart.png"width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: -5px" href="#">
+       
     </div>
-    <div class="menu-bar">
-      <img src="../../media/menu.png" width="24px" height="24px" style="margin-top: 2px;">
-      <button id="menuButton"class="flex justify-center items-center pt-[2px] rounded-md shadow-md mx-auto mt-[42px]">Menu</button>
+   
     
-    </div>
     <div class="search-bar">
       <input type="text" placeholder="Search">
+      <a >
         <img src="../../media/search.png" >
+      </a>
+       
+        
       </div>
 
       <div id="background-container">
@@ -42,7 +46,7 @@
             <span>Burrito</span>
             <div class="quantity-control">
               <button>-</button>
-              <span>1</span>
+              <span>0</span>
               <button>+</button>
             </div>
           </div>
@@ -51,7 +55,7 @@
             <span>Pescado empapelado</span>
             <div class="quantity-control">
               <button>-</button>
-              <span>1</span>
+              <span>0</span>
               <button>+</button>
             </div>
           </div>
@@ -60,41 +64,115 @@
             <span>Filete</span>
             <div class="quantity-control">
               <button>-</button>
-              <span>1</span>
+              <span>0</span>
               <button>+</button>
             </div>
           </div>
         </div>
+         
+      <div class="content_2">
+        <div class="food-item">
+          <img src="../../media/arroz.png" alt="Burrito">
+          <span>Arroz rojo</span>
+          <div class="quantity-control">
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+        </div>
+        <div class="food-item">
+          <img src="../../media/pure.png" alt="Pescado empapelado">
+          <span>Pure de papa</span>
+          <div class="quantity-control">
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+        </div>
+        <div class="food-item">
+          <img src="../../media/col.png" alt="Filete">
+          <span>Col de bruselas</span>
+          <div class="quantity-control">
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+        </div>
       </div>
+      <div class="content_2">
+        <div class="food-item">
+          <img src="../../media/verduras.png" alt="Burrito">
+          <span>Verduras al vapor</span>
+          <div class="quantity-control">
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+        </div>
+        <div class="food-item">
+          <img src="../../media/pasta.png" alt="Pescado empapelado">
+          <span>Pasta</span>
+          <div class="quantity-control">
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+        </div>
+        <div class="food-item">
+          <img src="../../media/ensalada.png" alt="Filete">
+          <span>Ensalada</span>
+          <div class="quantity-control">
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+        
       
 </body>
 
 <style>
-
-content {
+  .content_2 {
   display: flex;
-  justify-content: space-between;
-  gap: 10px; 
-  margin-top: 20px;
-  width: 50%;
+  justify-content: center; /* Esto centrará los elementos horizontalmente */
+  gap: 5px;
+  margin-top: 30px;
+  width: 100%;
   height: auto;
-  align-items: center;
-  flex-direction: row;
+  
+  
+  }
 
+.content {
+  display: flex;
+  justify-content: center; /* Esto centrará los elementos horizontalmente */
+  gap: 5px;
+  margin-top: 50px;
+  width: 100%;
+  height: auto;
+  align-items: flex-start;
 }
-
 .food-item {
+  display: flex;
   background-color: #a36e46;
   border-radius: 15px;
-  width: 90px;
-  height: 145.8px;
-  display: flex;
+  width: 90px; /* Mantén este tamaño o ajusta según sea necesario */
+
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s; /* Animación para hover */
 }
+
+.food-item:hover {
+  transform: scale(1.05); /* Crece un poco al hacer hover */
+}
+
 
 .food-item img {
   width: 50px;
@@ -132,7 +210,7 @@ content {
 }
 
 #background-container{
-    position: absolute;
+    position: fixed;
     top: 170px;
     background-color: rgb(224 203 184 / 89%);
     width: 341px;
@@ -140,6 +218,7 @@ content {
     border-radius: 5px;
     left: 20px;
     display: flex;
+    flex-direction: column;
   }
   #nav{
     font-family: 'Monda';
@@ -184,26 +263,6 @@ content {
 
   }
 
-  .menu-bar {
-    border: 2px solid #883900;
-    border-radius: 5px;
-    padding: 2px 18px;
-    display: flex;
-    align-items: center; /* Alinea verticalmente los elementos */
-    gap: 10px; /* Espaciado entre el ícono y el botón */
-    font-family: carme;
-    color: #F2E4D7;
-    background-color: rgb(136 57 0 / 62%);
-    position: absolute;
-    left: 20px;
-    top: 100px;
-    font-size: medium;
-    
-
-  }
-
-  #menuButton {
-    margin: 0;}
 
   .user-name{
     border: 2px solid  rgb(136 57 0 / 68%); /* Color y grosor del borde */
