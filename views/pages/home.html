@@ -11,130 +11,205 @@
   <body>
     <div >
       <img src="../../media/logo.png" width="98px" height="32px" style="margin: 20px">
-    
     </div>
     <div>
-      
       <h4 class="user-name">username complete <h4>
         <a href="cart.html">
-           <img src="../../media/cart.png"width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: -5px">
-      </a>
+          <img src="../../media/cart.png"width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: -5px">
+        </a>
         <img src="../../media/user.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: 30px" href="#">
-       
-    </div>
-   
-    
-    <div class="search-bar">
-      <input type="text" placeholder="Search">
-      <a >
-        <img src="../../media/search.png" >
-      </a>
-       
-        
       </div>
-
-      <div id="background-container">
+      
+      <div class="search-bar">
+        <input type="text" placeholder="Search">
+        <a>
+          <img src="../../media/search.png" >
+        </a>
+      </div>
+      <div id="menu">
         <div id="nav">
-          <span>Platillos</span>
-          <span>Bebidas</span>
-          <span>Postres</span>
+          <span class="category" data-category="platillos">Platillos</span>
+          <span class="category" data-category="bebidas">Bebidas</span>
+          <span class="category" data-category="postres">Postres</span>
         </div>
-        
         <div class="content">
           <div class="food-item">
             <img src="../../media/burrito.png" alt="Burrito">
             <span>Burrito</span>
             <div class="quantity-control">
-              <button>-</button>
-              <span>0</span>
-              <button>+</button>
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
             </div>
           </div>
           <div class="food-item">
             <img src="../../media/pescado.png" alt="Pescado empapelado">
             <span>Pescado empapelado</span>
             <div class="quantity-control">
-              <button>-</button>
-              <span>0</span>
-              <button>+</button>
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
             </div>
           </div>
           <div class="food-item">
             <img src="../../media/filete.png" alt="Filete">
             <span>Filete</span>
             <div class="quantity-control">
-              <button>-</button>
-              <span>0</span>
-              <button>+</button>
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
             </div>
           </div>
         </div>
-         
-      <div class="content_2">
-        <div class="food-item">
-          <img src="../../media/arroz.png" alt="Burrito">
-          <span>Arroz rojo</span>
-          <div class="quantity-control">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
+        <div class="content_2">
+          <div class="food-item">
+            <img src="../../media/arroz.png" alt="Burrito">
+            <span>Arroz rojo</span>
+            <div class="quantity-control">
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
+            </div>
+          </div>
+          <div class="food-item">
+            <img src="../../media/pure.png" alt="Pescado empapelado">
+            <span>Pure de papa</span>
+            <div class="quantity-control">
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
+            </div>
+          </div>
+          <div class="food-item">
+            <img src="../../media/col.png" alt="Filete">
+            <span>Col de bruselas</span>
+            <div class="quantity-control">
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
+            </div>
           </div>
         </div>
-        <div class="food-item">
-          <img src="../../media/pure.png" alt="Pescado empapelado">
-          <span>Pure de papa</span>
-          <div class="quantity-control">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
+        <div class="content_2">
+          <div class="food-item">
+            <img src="../../media/verduras.png" alt="Burrito">
+            <span>Verduras al vapor</span>
+            <div class="quantity-control">
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
+            </div>
+          </div>
+          <div class="food-item">
+            <img src="../../media/pasta.png" alt="Pescado empapelado">
+            <span>Pasta</span>
+            <div class="quantity-control">
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
+            </div>
+          </div>
+          <div class="food-item">
+            <img src="../../media/ensalada.png" alt="Filete">
+            <span>Ensalada</span>
+            <div class="quantity-control">
+              <button class="decrement">-</button>
+              <span class="count">0</span>
+              <button class="increment">+</button>
+            </div>
           </div>
         </div>
-        <div class="food-item">
-          <img src="../../media/col.png" alt="Filete">
-          <span>Col de bruselas</span>
-          <div class="quantity-control">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
+        <div class="bebidas-hidden">
+          <div class="content_2">
+            <div class="food-item">
+              <img src="../../media/agua.png" alt="Agua de Jamaica">
+              <span>Agua de Jamaica </span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="../../media/jugo.png" alt="Jugo de naranja">
+              <span>Jugo de Naranja</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+              <div class="food-item">
+                <img src="../../media/coca.png" alt="Coca-cola">
+                <span>Coca-cola</span>
+                <div class="quantity-control">
+                  <button class="decrement">-</button>
+                  <span class="count">0</span>
+                  <button class="increment">+</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="content_2">
-        <div class="food-item">
-          <img src="../../media/verduras.png" alt="Burrito">
-          <span>Verduras al vapor</span>
-          <div class="quantity-control">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
-          </div>
-        </div>
-        <div class="food-item">
-          <img src="../../media/pasta.png" alt="Pescado empapelado">
-          <span>Pasta</span>
-          <div class="quantity-control">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
-          </div>
-        </div>
-        <div class="food-item">
-          <img src="../../media/ensalada.png" alt="Filete">
-          <span>Ensalada</span>
-          <div class="quantity-control">
-            <button>-</button>
-            <span>0</span>
-            <button>+</button>
-          </div>
-        </div>
-      </div>
-    </div>
-   </div>
+   
+  
+
+
+<script>
+ document.addEventListener('DOMContentLoaded', () => {
+  const categories = document.querySelectorAll('.category');
+  const menus = document.querySelectorAll('.menu');
+  
+  // Cambiar la categoría mostrada
+  categories.forEach(category => {
+    category.addEventListener('click', () => {
+      const selectedCategory = category.getAttribute('data-category');
+      
+      menus.forEach(menu => {
+        if (menu.classList.contains(selectedCategory)) {
+          menu.classList.remove('hidden');
+        } else {
+          menu.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Funcionalidad para agregar productos al carrito
+  const foodItems = document.querySelectorAll('.food-item');
+  
+  foodItems.forEach(item => {
+    let count = 0;
+    const decrementBtn = item.querySelector('.decrement');
+    const incrementBtn = item.querySelector('.increment');
+    const countDisplay = item.querySelector('.count');
+    
+    incrementBtn.addEventListener('click', () => {
+      count++;
+      countDisplay.textContent = count;
+      // Aquí puedes implementar la lógica para agregar al carrito
+    });
+    
+    decrementBtn.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        countDisplay.textContent = count;
+        // Aquí puedes implementar la lógica para eliminar del carrito
+      }
+    });
+  });
+});
+
+
+</script>
+
         
       
 </body>
 
 <style>
+  .bebidas-hidden {
+  display: none;
+}
   .content_2 {
   display: flex;
   justify-content: center; /* Esto centrará los elementos horizontalmente */
@@ -209,7 +284,8 @@
   color: #5E331B;
 }
 
-#background-container{
+
+#menu{
     position: fixed;
     top: 170px;
     background-color: rgb(224 203 184 / 89%);
@@ -262,8 +338,6 @@
     height: 12px;
 
   }
-
-
   .user-name{
     border: 2px solid  rgb(136 57 0 / 68%); /* Color y grosor del borde */
     border-radius: 20px; /* Redondea las esquinas */
@@ -275,8 +349,7 @@
     position: absolute; /* Posiciona de manera absoluta */
     top: 2px; /* Mueve el contenedor hacia abajo desde el borde superior */
     right: 80px; 
-
-  }
+ }
   .color-secondary{
    color: rgb(136 57 0 / 52%);
   }
