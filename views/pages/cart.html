@@ -31,50 +31,141 @@
            
         </div>
         <div class="cart">
-          <p>Cart</p>
+          <p class="letter">Cart</p>
           <img src="../../media/cart.png" width="38px" height="38px" >
         </div>
         <div id="background-container">
           <div id="nav">
                   <div class="cart-items">
-                          <div class="cart-item">
-                              <img class="item-image" src="../../media/lunch.png" alt="<%= lunch.png %>">
-                              <div class="item-details">
-                                  <h3>Lunch Completo</h3>
-                                  <p>Pescado empapelado
-                                    Pure de papa
-                                    Ensalada</p>
-                                  <p class="item-price">$80.00</p>
-                              </div>
-                              <div class="quantity-control">
-                                  <button class="quantity-btn">-</button>
-                                  <input type="text" value="<%= item.quantity %>" readonly class="quantity-input">
-                                  <button class="quantity-btn">+</button>
-                              </div>
+                    <div class="lunch">
+                      <img class="item-image" src="../../media/lunch.png" alt="lunch">
+                      <div class="item-details">
+                          <h3>Lunch Completo</h3>
+                          <p>Pescado empapelado
+                            <br>Pure de papa
+                           <br> Ensalada</p>
+                          <p class="item-price">$80.00</p>
+                          <div class="quantity-control">
+                            <button class="decrement">-</button>
+                            <span class="count">0</span>
+                            <button class="increment">+</button>
                           </div>
-                      <% }); %>
-                  </div>
-      
+                        </div>
+                      </div>
+                      <div class="lunch">
+                        <img class="item-image" src="../../media/bebida.png">
+                        <div class="item-details">
+                          <h3>Agua de frutas</h3>
+                          <p>Agua sabor fresa</p>
+                          <p class="item-price">$15.00</p>
+                          <div class="quantity-control">
+                            <button class="decrement">-</button>
+                            <span class="count">0</span>
+                            <button class="increment">+</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="lunch">
+                        <img class="item-image" src="../../media/postre.png">
+                        <div class="item-details">
+                          <h3>Pastel</h3>
+                          <p>Pastel de avena 
+                            <br>con relleno de fresa
+                          </p>
+                          <p class="item-price">$15.00</p>
+                          <div class="quantity-control">
+                            <button class="decrement">-</button>
+                            <span class="count">0</span>
+                            <button class="increment">+</button>
+                          </div>
+                        </div>
+                        </div>
+                  
                   <div class="cart-summary">
                       <h3>Total: <span class="total-price">MXN</span></h3>
                       <button class="pay-btn">PAGAR</button>
                   </div>
 
-    <script src="/js/server.js"></script>
+    <script >
+
+const lunch = document.querySelectorAll('.lunch');
+  
+  lunch.forEach(item => {
+    let count = 0;
+    const decrementBtn = item.querySelector('.decrement');
+    const incrementBtn = item.querySelector('.increment');
+    const countDisplay = item.querySelector('.count');
+    
+    incrementBtn.addEventListener('click', () => {
+      count++;
+      countDisplay.textContent = count;
+      // Aquí puedes implementar la lógica para agregar al carrito
+    });
+    
+    decrementBtn.addEventListener('click', () => {
+      if (count > 0) {
+        count--;
+        countDisplay.textContent = count;
+        // Aquí puedes implementar la lógica para eliminar del carrito
+      }
+    });
+  });
+
+
+    </script>
       
         
-    
-
-
-
-
-
-
-
-
-
 <style>
-  
+
+
+.cart-summary{
+  display: flex;
+  color: #3A1B04;
+  font-size: 20px;
+  margin-top: 30px;
+  align-items: center;
+  margin-left: 100px;
+  flex-direction: column;
+  font-size: 25px;
+}
+.pay-btn{
+  width: 50px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  font-size: 15px;
+}
+.lunch{
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  margin-top: 30px;
+  align-items: center;
+  margin-left: 40px;
+}
+.item-image{
+  display: flex;
+  width: 100px;
+  height: 100px;
+}
+.item-details{
+  text-align: center;
+  flex-direction: column;
+  gap:-15px;
+  color: #3A1B04;
+  flex: auto;
+  font-size: 15px;
+  font-family: Dongle;
+  text-align:center ;
+  display: flex;
+  margin-left: 30px;
+}
+.letter {
+  text-align: left;
+  margin-top: auto;
+}
   #background-container{
     position: fixed;
     top: 170px;
@@ -105,7 +196,6 @@
     margin-top: 50px;
     margin-left: 25px;
   }
-
  .user-name{
     border: 2px solid  rgb(136 57 0 / 68%); /* Color y grosor del borde */
     border-radius: 20px; /* Redondea las esquinas */
@@ -117,8 +207,7 @@
     position: absolute; /* Posiciona de manera absoluta */
     top: 2px; /* Mueve el contenedor hacia abajo desde el borde superior */
     right: 80px; 
-
-  }
+}
   .color-secondary{
    color: rgb(136 57 0 / 52%);
   }
@@ -205,17 +294,24 @@
         background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
         background-color: rgb(136 57 0);
       }
+      .quantity-control{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
       button{
-        width: 81px;
-        height: 28px;
+        width: 15px;
+        height: 15px;
         display: flex;
         justify-content: center;
         background-color: rgb(136 57 0 / 52%) ;
         font-family: Dongle;
-        font-size: 28px;
+        font-size: 10px;
         font-weight: bold;
         color: #3A1B04;
         transition: scale ease-in-out 0.2s;
+        border-radius: 5px;
         
       }
       button:hover{
