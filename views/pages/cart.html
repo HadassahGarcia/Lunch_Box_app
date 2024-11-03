@@ -82,7 +82,7 @@
                         </div>
                   
                   <div class="cart-summary">
-                      <h3>Total: <span class="total-price">MXN</span></h3>
+                      <p>Total: <span class="total-price">MXN</span></p>
                       <button class="pay-btn">PAGAR</button>
                   </div>
 
@@ -116,17 +116,20 @@ const lunch = document.querySelectorAll('.lunch');
       
         
 <style>
-
+.nav{
+  width: 80%;
+  height: 60%;
+}
 
 .cart-summary{
   display: flex;
   color: #3A1B04;
   font-size: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
   align-items: center;
-  margin-left: 100px;
+  margin-left: 90px;
   flex-direction: column;
-  font-size: 25px;
+ 
 }
 .pay-btn{
   width: 50px;
@@ -140,10 +143,11 @@ const lunch = document.querySelectorAll('.lunch');
 .lunch{
   display: flex;
   flex-direction: row;
-  gap: 1px;
+
   margin-top: 30px;
   align-items: center;
   margin-left: 40px;
+  height: 18%;
 }
 .item-image{
   display: flex;
@@ -156,7 +160,7 @@ const lunch = document.querySelectorAll('.lunch');
   gap:-15px;
   color: #3A1B04;
   flex: auto;
-  font-size: 15px;
+  font-size: 12px;
   font-family: Dongle;
   text-align:center ;
   display: flex;
