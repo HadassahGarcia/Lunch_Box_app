@@ -26,7 +26,7 @@
       
       <h4 class="user-name">username complete <h4>
             <a href="profile.html">
-              <img src="../../media/user.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: 30px">
+              <img class="img-user" src="../../media/user.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: 30px">
             </a>
            
         </div>
@@ -116,6 +116,21 @@ const lunch = document.querySelectorAll('.lunch');
       
         
 <style>
+  .img-user{
+    top: 10px;
+  }
+  .user-name{
+    border: 2px solid  rgb(136 57 0 / 68%); /* Color y grosor del borde */
+    border-radius: 20px; /* Redondea las esquinas */
+    padding: 2px 20px; /* Espaciado interno */
+    display: inline-block; /* Ajusta el tamaño del contenedor al texto */
+    font-family: Dongle; /* Fuente del texto */
+    color:  rgb(136 57 0 / 68%);
+    background-color: #E7F4E6; /* Color de fondo */
+    position: absolute; /* Posiciona de manera absoluta */
+    top: 5px; /* Mueve el contenedor hacia abajo desde el borde superior */
+    right: 80px; 
+ }
 .nav{
   width: 80%;
   height: 60%;
