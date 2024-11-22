@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Carme&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Lunch Room</title>
+  </head>
+  <body>
+    <div>
+      <img src="http://localhost:3000/public/media/logo.png" width="98px" height="32px" style="margin: 20px">
+    </div>
+    <div>
+      <h4 class="user-name">Username<h4>
+          <a href="cart.html">
+            <img src="http://localhost:3000/public/media/cart.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: -5px">
+          </a>
+          <img src="http://localhost:3000/public/media/user.png" width="24px" height="24px" style="margin: 20px;position: absolute; top: -15px; right: 30px" href="#">
+        </div>
+
+        <div id="menu-container">
+          <div class="content">
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/burrito.png" alt="Burrito">
+              <span>Burrito</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/pescado.png" alt="Pescado empapelado">
+              <span>Pescado empapelado</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/filete.png" alt="Filete">
+              <span>Filete</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="content_2">
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/arroz.png" alt="Burrito">
+              <span>Arroz rojo</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/pure.png" alt="Pescado empapelado">
+              <span>Pure de papa</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/col.png" alt="Filete">
+              <span>Col de bruselas</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="content_2">
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/verduras.png" alt="Burrito">
+              <span>Verduras al vapor</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/pasta.png" alt="Pescado empapelado">
+              <span>Pasta</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+            <div class="food-item">
+              <img src="http://localhost:3000/public/media/ensalada.png" alt="Filete">
+              <span>Ensalada</span>
+              <div class="quantity-control">
+                <button class="decrement">-</button>
+                <span class="count">0</span>
+                <button class="increment">+</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button id="addToCart" class="add-btn">Agregar</button>
+          </div>
+
+          <script>
+  const { ipcRenderer } = require('electron');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Funcionalidad para agregar productos al carrito
+    const foodItems = document.querySelectorAll('.food-item');
+    
+    foodItems.forEach(item => {
+      let count = 0;
+      const decrementBtn = item.querySelector('.decrement');
+      const incrementBtn = item.querySelector('.increment');
+      const countDisplay = item.querySelector('.count');
+      
+      incrementBtn.addEventListener('click', () => {
+        count++;
+        countDisplay.textContent = count;
+        // Aquí puedes implementar la lógica para agregar al carrito
+      });
+      
+      decrementBtn.addEventListener('click', () => {
+        if (count > 0) {
+          count--;
+          countDisplay.textContent = count;
+          // Aquí puedes implementar la lógica para eliminar del carrito
+        }
+      });
+    });
+
+    // Add to cart
+    document.getElementById("addToCart").addEventListener("click", function(event) {
+      const foodItems = document.querySelectorAll('.food-item');
+
+      const items = []
+
+      foodItems.forEach(item => {
+        const img = item.querySelector('img').src;
+        const count = item.querySelector('.count').textContent;
+        const foodName = item.querySelector('.food-item span').textContent;
+
+        if (count != 0) {
+          items.push({
+            name: foodName,
+            img: img,
+            count: count
+          })
+        }
+      });
+
+      if (items.length > 0) {
+        // Store cart
+        fetch('http://localhost:3000/cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({data: items})
+        }).then(async response => {
+          const data = await response.json()
+
+          ipcRenderer.send('show-dialog', response.ok ? data.message : data.error);
+
+          if (response.ok) {
+            // Clean products
+            foodItems.forEach(item => {
+              item.querySelector('.count').textContent = 0;
+            })
+          }
+        })
+      }
+    });
+  })
+</script>
+        </body>
+
+        <style>
+    button{
+        width: 15px;
+        height: 15px;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(136 57 0 / 52%) ;
+        font-family: Dongle;
+        font-size: 10px;
+        font-weight: bold;
+        color: #3A1B04;
+        transition: scale ease-in-out 0.2s;
+        border-radius: 5px;
+        
+      }
+      button:hover{
+        scale: 1.1;
+    
+      }
+  .add-btn{
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 150px;
+  font-size: 15px;
+  margin-top: 20px;
+  padding: 8px;
+  }
+  .bebidas-hidden {
+  display: none;
+}
+  .content_2 {
+  display: flex;
+  justify-content: center; /* Esto centrará los elementos horizontalmente */
+  gap: 5px;
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+  
+  
+  }
+
+.content {
+  display: flex;
+  justify-content: center; /* Esto centrará los elementos horizontalmente */
+  gap: 5px;
+  margin-top: 50px;
+  width: 100%;
+  height: auto;
+  align-items: flex-start;
+}
+.food-item {
+  display: flex;
+  background-color: #a36e46;
+  border-radius: 15px;
+  width: 90px; /* Mantén este tamaño o ajusta según sea necesario */
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s; /* Animación para hover */
+}
+
+.food-item:hover {
+  transform: scale(1.05); /* Crece un poco al hacer hover */
+}
+
+
+.food-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.food-item span {
+  font-family: 'Monda', sans-serif;
+  font-size: 12px;
+  text-align: center;
+  color: #FEEAD9
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.quantity-control button {
+  background-color: rgb(224 203 184 / 67%);
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quantity-control span {
+  font-family: 'Monda', sans-serif;
+  color: #5E331B;
+}
+
+
+#menu-container{
+    position: fixed;
+    top: 170px;
+    background-color: rgb(224 203 184 / 89%);
+    width: 341px;
+    height: 570px;
+    border-radius: 5px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  #nav{
+    font-family: 'Monda';
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    color: #883900;
+    }
+    
+    .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #F2E4D7; /* Color de fondo similar */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 10px 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra interior */
+    width: 200px; /* Ajusta el ancho según sea necesario */
+    position: absolute; /* Usamos position para moverla */
+    right: 15px; /* Desplazamos hacia la derecha */
+    top: 97px;
+  }
+
+  .search-bar input {
+    border: none;
+    background: none;
+    outline: none;
+    flex: 1;
+    font-size: 10px;
+    color: #C9A694; /* Color del texto */
+    font-family: 'Monda', sans-serif;
+    font-size: 12px;
+  }
+
+  .search-bar input::placeholder {
+    color: #C9A694; /* Color del placeholder */
+  }
+
+  .search-bar img {
+    width: 12px; /* Ajusta el tamaño del icono de búsqueda */
+    height: 12px;
+
+  }
+  .user-name{
+    border: 2px solid  rgb(136 57 0 / 68%); /* Color y grosor del borde */
+    border-radius: 20px; /* Redondea las esquinas */
+    padding: 2px 20px; /* Espaciado interno */
+    display: inline-block; /* Ajusta el tamaño del contenedor al texto */
+    font-family: Dongle; /* Fuente del texto */
+    color:  rgb(136 57 0 / 68%);
+    background-color: #E7F4E6; /* Color de fondo */
+    position: absolute; /* Posiciona de manera absoluta */
+    top: 2px; /* Mueve el contenedor hacia abajo desde el borde superior */
+    right: 80px; 
+ }
+  .color-secondary{
+   color: rgb(136 57 0 / 52%);
+  }
+  .font-dongle{
+    font-family: Dongle;
+  }
+  .font-carme{
+    font-family: Carme;
+  }
+  .color-primary{
+    color:#883900;
+  }
+  .font-awesome{
+    font-family: 'Font Awesome 6 Free', sans-serif;
+    font-weight: 400;
+  }
+  .login-field{
+    width: 258px;
+    display: block;
+    margin: auto;
+    background-color: transparent;
+    border-bottom: 1px solid rgb(136 57 0 / 52%);
+    font-family: Dongle;
+    font-size: 28px;
+    color: rgb(66 31 5);
+
+  }
+  .login-field::placeholder{
+    font-size: 32px;
+    color: rgb(66 31 5 / 56% );
+  }
+  .login-field:active,
+  .login-field:focus{
+    outline: none;
+  }
+  body {
+  background-color: #FFFEF1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  right: -15.36px;
+  width: 385.36px;
+  height: 389.15px;
+  background-image: url('http://localhost:3000/public/media/Ellipse 4.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -5;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -11px;
+  left: -22.05px ;
+  width: 313.05px;
+  height: 358px;
+  background-image: url('http://localhost:3000/public/media/Ellipse 5.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -5;
+}
+</style>

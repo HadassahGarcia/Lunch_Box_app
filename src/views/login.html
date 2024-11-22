@@ -11,11 +11,11 @@
   <body>
     <!--header logo-->
     <div class="text-center relative mt-[117px]" >
-      <img src="../../media/logo.png" class="mx-auto">
+      <img src="http://localhost:3000/public/media/logo.png" class="mx-auto">
       <h1 class="font-awesome text-[32px] color-primary leading-[31px]">LUNCH <br> ROOM</h1>
     </div>
     
-       <!--input login-->
+    <!--input login-->
     <div class="flex flex-col gap-[106px] text-center mt-[144px]">
       <input id="email" class="login-field" placeholder="Email" type="email">
       <input id="password" class="login-field" placeholder="Password" type="password">
@@ -30,32 +30,38 @@
     </div> 
     
     <div class="login-container">
-      <button id="loginButton"class="flex justify-center items-center pt-[6px] rounded-md shadow-md mx-auto mt-[42px]">Login</button>
+      <button id="loginButton" class="flex justify-center items-center pt-[6px] rounded-md shadow-md mx-auto mt-[42px]">Login</button>
     </div>
-    <script>
-      const { ipcRenderer } = require('electron');
-    
-      // Envía la solicitud de login solo cuando se hace clic
-      document.getElementById('loginButton').addEventListener('click', () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-    
-        // Enviar los datos al proceso principal
-        ipcRenderer.send('login', email, password);
-    
-        // Enviar el evento de éxito de login
-      });
-    </script>
-    
-  
-   
   </body>
 </html>
 
 <script>
-  document.getElementById("email").value = "test@gmail.com"
-  document.getElementById("password").value = "test123"
-  document.getElementById("loginButton").click()
+  const { ipcRenderer } = require('electron');
+
+  document.getElementById("loginButton").addEventListener("click", function(event) {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    }).then(async response => {
+      if (!response.ok) {
+        ipcRenderer.send('show-dialog', 'Invalid Credentials');
+        return
+      }
+
+      const data = await response.json()
+
+      ipcRenderer.send('go-to', data.redirect)
+    })
+  });
 </script>
 
 <style>
@@ -110,7 +116,7 @@
     right: -15.36px;
     width: 385.36px;
     height: 389.15px;
-    background-image: url('../../media/Ellipse 4.png');
+    background-image: url('http://localhost:3000/public/media/Ellipse 4.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: -5;
@@ -123,7 +129,7 @@
     left: -22.05px ;
     width: 313.05px;
     height: 358px;
-    background-image: url('../../media/Ellipse 5.png');
+    background-image: url('http://localhost:3000/public/media/Ellipse 5.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: -5;

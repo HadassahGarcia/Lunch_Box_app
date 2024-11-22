@@ -1,58 +1,57 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
-const path = require('path');
-const axios = require('axios'); // Usamos Axios para hacer las solicitudes HTTP
+require('dotenv').config()
+require('electron-reloader')(module)
 
-require('electron-reloader')(module);
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
+const path = require('path')
+const serverApp = require('express')()
 
-const pages_path = 'views/pages/';
-let mainWindow; // Definimos la ventana globalmente
+let win
 
-const createWindow = () => {
-  mainWindow = new BrowserWindow({
-    width: 393,
-    height: 852,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  });
-
-  mainWindow.loadFile(pages_path + 'login.html'); // Cargamos la página de login inicialmente
-  mainWindow.removeMenu(); // Elimina la barra de menú
-};
-
-app.whenReady().then(() => {
-  createWindow();
-  mainWindow.webContents.openDevTools();
-
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
-});
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
-});
-ipcMain.on('login', (event, email, password) => {
-    let data = new URLSearchParams();
-    data.append('email', email)
-    data.append('password', password)
-
-    fetch('http://localhost:4000/login', {
-      method:'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: data.toString() 
-    }).then(res => {
-      if (res.ok){
-      mainWindow.loadFile(pages_path +'home.html');
-
-      }
-      else {
-        dialog.showErrorBox('error', 'No estas bien')
+const startApp = async () => {
+  const initServer = require(path.join(__dirname, 'src/server'))
+  const server = await initServer(serverApp)
+  const createWindow = () => {
+    win = new BrowserWindow({
+      width: 393,
+      height: 852,
+      // resizable: false,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false
       }
     })
-});
 
+    win.loadFile(path.join(app.getAppPath(), 'src/views/login.html'))
+    // win.removeMenu()
+  }
+
+  ipcMain.on('show-dialog', (event, message) => {
+    dialog.showMessageBox(win, {
+      type: 'info',
+      title: 'Custom Dialog',
+      message,
+      buttons: ['OK']
+    })
+  })
+
+  ipcMain.on('go-to', (event, message) => {
+    win.loadFile(path.join(app.getAppPath(), 'src/views', message))
+  })
+
+  app.whenReady().then(() => {
+    createWindow()
+
+    app.on('activate', () => {
+      if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    })
+  })
+
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit()
+      server.close()
+    }
+  })
+}
+
+startApp()
